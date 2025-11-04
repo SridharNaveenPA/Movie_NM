@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/index.html" class="brand">Movie Reviews</a>
+  <div class="nav-right">
+    <a href="/index.html">Home</a>
+    <a href="/profile.html" id="nav-profile" class="hidden">Profile</a>
+    <a href="/login.html" id="nav-login">Login</a>
+    <button id="nav-logout" class="hidden">Logout</button>
+  </div>
+</nav>
+<main class="container">
+  <div id="movieDetail" class="card"></div>
+  <section id="reviewSection" class="card">
+    <h3>Add/Edit Your Review</h3>
+    <form id="reviewForm">
+      <input type="number" id="reviewRating" min="1" max="5" placeholder="Rating 1-5" required>
+      <textarea id="reviewComment" placeholder="Your comment..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+  <h3>Reviews</h3>
+  <div id="reviews"></div>
+</main>
+</body>
+</html>
+
+

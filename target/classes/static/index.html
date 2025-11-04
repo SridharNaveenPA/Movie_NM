@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Reviews</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/index.html" class="brand">Movie Reviews</a>
+      <div class="nav-right">
+        <a href="/index.html">Home</a>
+        <a href="/login.html" id="nav-login">Login</a>
+        <a href="/register.html" id="nav-register">Register</a>
+        <a href="/profile.html" id="nav-profile" class="hidden">Profile</a>
+        <button id="nav-logout" class="hidden">Logout</button>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="search-bar">
+        <input type="text" id="searchQuery" placeholder="Search by title...">
+        <select id="searchGenre">
+          <option value="">All Genres</option>
+          <option>Action</option>
+          <option>Comedy</option>
+          <option>Drama</option>
+          <option>Thriller</option>
+        </select>
+        <input type="number" id="searchYear" placeholder="Year">
+        <button id="searchBtn">Search</button>
+      </section>
+
+      <h2>Movies</h2>
+      <div id="movies" class="grid"></div>
+    </main>
+  </body>
+  </html>
+
+
