@@ -14,6 +14,36 @@ button{background:var(--primary);color:#022c22;border:none;padding:8px 12px;bord
 button.hidden, .hidden{display:none}
 input,textarea{width:100%;margin:6px 0;padding:10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text)}
 .auth .card{max-width:420px;margin:0 auto}
-@media (max-width:640px){.movie-card img{height:240px}}
+
+/* Movie Details Page */
+.movie-info {
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.movie-description {
+  margin-top: 24px;
+}
+.movie-description h3 {
+  margin: 0 0 12px 0;
+}
+.review-rating {
+  font-size: 1.2em;
+  color: var(--primary);
+  margin-right: 8px;
+}
+.muted {
+  color: var(--muted);
+  font-size: 0.9em;
+  margin: 4px 0;
+}
+
+@media (max-width:640px){
+  .movie-card img{height:240px}
+  .movie-info {
+    grid-template-columns: 1fr;
+  }
+}
 
 

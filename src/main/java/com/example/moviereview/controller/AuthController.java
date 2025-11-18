@@ -2,7 +2,7 @@ package com.example.moviereview.controller;
 
 import com.example.moviereview.dto.AuthDtos;
 import com.example.moviereview.model.User;
-import com.example.moviereview.security.JwtService;
+import com.example.moviereview.security.JwtServicess;
 import com.example.moviereview.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +20,9 @@ public class AuthController {
 
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;
+    private final JwtServicess jwtService;
 
-    public AuthController(UserService userService, AuthenticationManager authenticationManager, JwtService jwtService) {
+    public AuthController(UserService userService, AuthenticationManager authenticationManager, JwtServicess jwtService) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;

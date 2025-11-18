@@ -14,7 +14,9 @@ CREATE TABLE IF NOT EXISTS movies (
   genre VARCHAR(120),
   release_year INT,
   description TEXT,
-  poster_url TEXT
+  poster_url TEXT,
+  director VARCHAR(255),
+  average_rating DECIMAL(3,1) DEFAULT 0.0
 );
 
 CREATE TABLE IF NOT EXISTS reviews (

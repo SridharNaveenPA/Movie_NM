@@ -18,7 +18,10 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public Movie save(Movie movie) { return movieRepository.save(movie); }
+    public Movie save(Movie movie) {
+        movie.calculateAverageRating();
+        return movieRepository.save(movie);
+    }
     public void deleteById(Long id) { movieRepository.deleteById(id); }
     public Optional<Movie> findById(Long id) { return movieRepository.findById(id); }
     public List<Movie> findAll() { return movieRepository.findAll(); }
@@ -33,6 +36,13 @@ public class MovieService {
             return movieRepository.findByReleaseYear(releaseYear, pageable);
         }
         return movieRepository.findAll(pageable);
+    }
+
+    public void updateMovieRating(Long movieId) {
+        findById(movieId).ifPresent(movie -> {
+            movie.calculateAverageRating();
+            movieRepository.save(movie);
+        });
     }
 }
 

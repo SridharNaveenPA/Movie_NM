@@ -5,7 +5,7 @@ import com.example.moviereview.model.Review;
 import com.example.moviereview.service.MovieService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.DoubleSummaryStatistics;
@@ -48,13 +48,11 @@ public class MovieController {
         return ResponseEntity.ok(toDetail(m));
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<Movie> create(@RequestBody Movie movie) {
         return ResponseEntity.ok(movieService.save(movie));
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Movie movie) {
         return movieService.findById(id)
@@ -69,7 +67,6 @@ public class MovieController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         movieService.deleteById(id);
@@ -81,12 +78,13 @@ public class MovieController {
                 .collect(Collectors.summarizingDouble(r -> r.getRating() == null ? 0 : r.getRating()))
                 ;
         double avg = m.getReviews().isEmpty() ? 0.0 : stats.getAverage();
-        return Map.<String, Object>of(
+        return Map.of(
                 "movie_id", m.getId(),
                 "title", m.getTitle(),
                 "genre", m.getGenre(),
                 "release_year", m.getReleaseYear(),
                 "poster_url", m.getPosterUrl(),
+                "director", m.getDirector(),
                 "average_rating", Math.round(avg * 10.0) / 10.0
         );
     }
@@ -100,13 +98,14 @@ public class MovieController {
                 "created_at", r.getCreatedAt().toString()
         )).collect(Collectors.toList());
         Map<String, Object> summary = toSummary(m);
-        return Map.<String, Object>of(
+        return Map.of(
                 "movie_id", m.getId(),
                 "title", m.getTitle(),
                 "genre", m.getGenre(),
                 "release_year", m.getReleaseYear(),
                 "description", m.getDescription(),
                 "poster_url", m.getPosterUrl(),
+                "director", m.getDirector(),
                 "average_rating", summary.get("average_rating"),
                 "reviews", reviews
         );

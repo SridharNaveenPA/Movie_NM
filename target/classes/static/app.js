@@ -47,9 +47,10 @@ function movieCard(m){
   return `
     <div class="card movie-card">
       <img src="${m.poster_url || 'https://picsum.photos/400/600?random='+m.movie_id}" alt="${m.title}">
-      <h4>${m.title}</h4>
-      <div class="muted">${m.genre || ''} ${m.release_year || ''}</div>
-      <div>⭐ ${m.average_rating ?? 0}</div>
+      <h4>${m.title} (${m.release_year || 'N/A'})</h4>
+      <div class="muted">${m.genre || 'N/A'}</div>
+      <div class="muted">Dir: ${m.director || 'N/A'}</div>
+      <div>⭐ ${m.average_rating?.toFixed(1) ?? 'No ratings'}</div>
       <a href="/movie.html?id=${m.movie_id}"><button>View</button></a>
     </div>
   `;
@@ -115,9 +116,16 @@ async function loadMovieDetail(){
       <img style="width:240px; height:360px; object-fit:cover; border-radius:8px" src="${data.poster_url || 'https://picsum.photos/400/600?random='+data.movie_id}">
       <div>
         <h2>${data.title}</h2>
-        <div>${data.genre || ''} • ${data.release_year || ''}</div>
-        <div>⭐ ${data.average_rating ?? 0}</div>
-        <p>${data.description || ''}</p>
+        <div class="movie-info">
+          <div><strong>Genre:</strong> ${data.genre || 'N/A'}</div>
+          <div><strong>Year:</strong> ${data.release_year || 'N/A'}</div>
+          <div><strong>Director:</strong> ${data.director || 'N/A'}</div>
+          <div><strong>Rating:</strong> ⭐ ${data.average_rating?.toFixed(1) ?? 'No ratings'}</div>
+        </div>
+        <div class="movie-description">
+          <h3>Description</h3>
+          <p>${data.description || 'No description available.'}</p>
+        </div>
       </div>
     </div>`;
   const list = qs('#reviews');

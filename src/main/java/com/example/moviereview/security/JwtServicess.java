@@ -12,12 +12,12 @@ import java.util.Date;
 import java.util.Map;
 
 @Service
-public class JwtService {
+public class JwtServicess {
 
     private final Key key;
     private final long expirationMs;
 
-    public JwtService(
+    public JwtServicess(
             @Value("${app.jwt.secret}") String secret,
             @Value("${app.jwt.expiration-ms}") long expirationMs) {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());

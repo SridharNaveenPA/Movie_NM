@@ -27,6 +27,12 @@ public class Movie {
     @Column(name = "poster_url")
     private String posterUrl;
 
+    @Column(name = "average_rating")
+    private Double averageRating = 0.0;
+
+    @Column(name = "director")
+    private String director;
+
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
@@ -84,6 +90,33 @@ public class Movie {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public void calculateAverageRating() {
+        if (reviews.isEmpty()) {
+            this.averageRating = 0.0;
+            return;
+        }
+        double sum = reviews.stream()
+                .mapToDouble(Review::getRating)
+                .sum();
+        this.averageRating = sum / reviews.size();
     }
 }
 
